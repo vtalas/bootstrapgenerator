@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using bootstrapgenerator.Code.Bootstraper;
 using bootstrapgenerator.Code.Bootstraper.DataRepository;
 using bootstrapgenerator.Code.Bootstraper.Less;
+using bootstrapgenerator.Code.SignalR;
 using cms.Code.Bootstraper.DataRepository;
 using log4net;
 
@@ -16,16 +17,10 @@ namespace bootstrapgenerator.Controllers
 		static readonly ILog Log = LogManager.GetLogger(typeof(BootstrapController));
 		
 		BootstrapGenerator Bg { get; set; }
-		string UserId { get; set; }
-		string BasePath { get; set; }
 
 		protected override void Initialize(System.Web.Routing.RequestContext requestContext)
 		{
-			BasePath = requestContext.HttpContext.Server.MapPath("~/App_Data/bootstrapper");
-			UserId = requestContext.HttpContext.Session != null ? requestContext.HttpContext.Session.SessionID : Guid.NewGuid().ToString();
-
-			var bootstrapDataRepository = new BootstrapDataRepositoryImpl(BasePath);
-			Bg = new BootstrapGenerator(BasePath, UserId, bootstrapDataRepository);
+			Bg = new BootstrapGeneratorFactory(requestContext).Instance;
 			base.Initialize(requestContext);
 		}
 
