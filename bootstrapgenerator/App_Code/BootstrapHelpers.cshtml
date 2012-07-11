@@ -1,0 +1,46 @@
+﻿@using bootstrapgenerator.Code
+@helper xxx(string item)
+	{
+	<tr>
+		<td>
+			@@@item
+		</td>
+		<td title="{{data.@(item).value}}" ng-dblclick="showColorPicker($event, data.@(item))" >
+			<input ng-model="data.@(item)" bootstrapelem="data.@item"  ng-change="ppp($event, '@(item)')" />
+			&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+}
+@helper VariablesGroup(string name, string id, string[] values)
+	{
+	<text>
+	<div style="float: left">
+		<h3>@name</h3>
+		@{
+			const int count = 5;
+			int len = values.Length / count;
+			if (values.Length % count > 0) { len++; }
+		}
+		@for (int i = 0; i < len; i++)
+  {
+			<table style="float: left">
+				@values.List(i, count, @<text>@xxx(item)</text>)
+			</table>
+  }
+	</div>
+	</text>;
+	 	
+}
+@helper accordion(string name, string id, Func<dynamic, HelperResult> action)
+	{
+	<div class="accordion-group">
+		<div class="accordion-heading">
+			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#@id" >@name</a>
+		</div>
+		<div id="@id" class="accordion-body collapse" >
+			<div class="accordion-inner clearfix">
+				@action(null)
+			</div>
+		</div>
+	</div>
+}

@@ -1,0 +1,31 @@
+﻿<!DOCTYPE html>
+<html ng-app="bootstrapApp" class=".main" data-modeldata="@Model">
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title</title>
+	
+	@*<link rel="stylesheet" href="@Url.Content("~/Content/bootstrap_default/less/bootstrap.less")"/>*@
+	
+	@Helpers.BundleCss("layout#.css", x =>
+		x.Add("~/Content/Style.less")
+		.Add("~/Content/bootstrap_default/less/bootstrap.less")
+		)
+	@Helpers.BundleJs("layout#.js", x =>
+		x.Add("~/Scripts/jquery-1.7.2.js")
+	)
+</head>
+<body>
+	<div class="page">
+		<header>
+			@Html.Partial("_navbar")
+		</header>
+		<section id="main">
+			Layout page 
+			@RenderBody()
+		</section>
+		<footer>
+		
+		</footer>
+	</div>
+</body>
+</html>

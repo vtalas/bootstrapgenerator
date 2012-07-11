@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html ng-app="bootstrapApp" class=".main" data-modeldata="@Model">
+<head>
+	<title>@ViewBag.Title</title>
+	@Helpers.BundleCss("bootstrap#.css", x =>
+		x.Add("~/Content/Style.less")
+			//.Add("~/Content/bootstrap_default/less/bootstrap.less")
+		)
+	@Helpers.BundleJs("bootstrap#.js", x =>
+		x.Add("~/Scripts/jquery-1.7.2.js")
+		.Add("~/Scripts/angular.js")
+		.Add("~/Scripts/angular-resource.js")
+		.Add("~/Scripts/bootstrap.js")
+		.Add("~/Scripts/colorPicker_src.js")
+		.Add("~/Scripts/Bootstrap/App.coffee")
+		.Add("~/Scripts/Bootstrap/Bootstrap.coffee")
+	)
+</head>
+<style>
+	.accordion-group
+	{
+		background-color: white;
+		position: relative;
+		z-index: 999;
+	}
+	.color
+	{
+		width: 20px;
+		border: 1px solid red;
+	}
+	#accordion2
+	{
+		position: relative;
+		width: 100%;
+	}
+	.xxx
+	{
+		position: fixed;
+		top: 40px;
+		width: 100px;
+	}
+	.aaa
+	{
+		cursor: pointer;
+		background-color: white;
+	}
+	.colorPicker
+	{
+		width: 1em;
+		cursor: pointer;
+	}
+</style>
+<body>
+	<div ng-controller="bootstrap" data-model="@Model">
+		<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" />
+			@Html.Partial("_navbar")
+		<br />
+		<br />
+		<br />
+		<div class="xxx">
+			<div class="accordion" id="accordion2">
+				@BootstrapHelpers.accordion("Colors", "vv", @<text>
+				@BootstrapHelpers.VariablesGroup("Scaffolding", "scf", new[] { "bodyBackground", "textColor", "linkColor", "linkColorHover" })
+				@BootstrapHelpers.VariablesGroup("Grays", "grs", new[] { "black", "grayDarker", "grayDark", "gray", "grayLight", "grayLighter", "white" })
+				@BootstrapHelpers.VariablesGroup("Accent colors", "acol", new[] { "blue", "blueDark", "green", "red", "yellow", "orange", "pink", "purple" })
+				</text>)
+				@BootstrapHelpers.accordion("Fonts", "tt", @<text>
+				@BootstrapHelpers.VariablesGroup("Typography", "tpgr", new[] { "sansFontFamily", "serifFontFamily", "monoFontFamily", "baseFontSize", "baseFontFamily", "baseLineHeight", "altFontFamily", "headingsFontFamily", "headingsFontWeight", "headingsColor", })
+				</text>)
+				@BootstrapHelpers.accordion("Navigation", "nn", @<text>
+				@BootstrapHelpers.VariablesGroup("Navbar", "navb", new[] { "navbarHeight", "navbarBackground", "navbarBackgroundHighlight", "navbarText", "navbarLinkColor", "navbarLinkColorHover", "navbarLinkColorActive", "navbarLinkBackgroundHover", "navbarLinkBackgroundActive", "navbarSearchBackground", "navbarSearchBackgroundFocus", "navbarSearchBorder", "navbarSearchPlaceholderColor", "navbarBrandColor" })
+				</text>)
+				@BootstrapHelpers.accordion("Buttons etc", "bbt", @<text>
+				@BootstrapHelpers.VariablesGroup("Buttons", "btn", new[] { "btnBackground", "btnBackgroundHighlight", "btnBorder", "btnPrimaryBackground", "btnPrimaryBackgroundHighlight", "btnInfoBackground", "btnInfoBackgroundHighlight", "btnSuccessBackground", "btnSuccessBackgroundHighlight", "btnWarningBackground", "btnWarningBackgroundHighlight", "btnDangerBackground", "btnDangerBackgroundHighlight", "btnInverseBackground", "btnInverseBackgroundHighlight" })
+				@BootstrapHelpers.VariablesGroup("Dropdowns", "ldrp", new[] { "dropdownBackground", "dropdownBorder", "dropdownLinkColor", "dropdownLinkColorHover", "dropdownLinkBackgroundHover", "dropdownDividerTop", "dropdownDividerBottom" })
+				@BootstrapHelpers.VariablesGroup("Tables", "hagscdgh", new[] { "tableBackground", "tableBackgroundAccent", "tableBackgroundHover", "tableBorder" })
+				</text>)
+				@BootstrapHelpers.accordion("Forms, inputs", "ffi", @<text>
+				@BootstrapHelpers.VariablesGroup("Form states and alerts", "fa", new[] { "warningText", "warningBackground", "warningBorder", "errorText", "errorBackground", "errorBorder", "successText", "successBackground", "successBorder", "infoText", "infoBackground", "infoBorder" })
+				@BootstrapHelpers.VariablesGroup("Forms", "frm", new[] { "inputBackground", "inputBorder", "inputBorderRadius", "inputDisabledBackground", "formActionsBackground" })
+				@BootstrapHelpers.VariablesGroup("Placeholder color", "plcc", new[] { "placeholderText", "hrBorder" })
+				</text>)
+				@BootstrapHelpers.accordion("Grid", "gg", @<text>
+				@BootstrapHelpers.VariablesGroup("Hero unit", "hrh", new[] { "heroUnitBackground", "heroUnitHeadingColor", "heroUnitLeadColor" })
+				@BootstrapHelpers.VariablesGroup("Grid 940px", "grd99", new[] { "gridColumns", "gridColumnWidth", "gridGutterWidth", "gridRowWidth" })
+				@BootstrapHelpers.VariablesGroup("Fluid grid", "fga", new[] { "fluidGridColumnWidth", "fluidGridGutterWidth" })
+				</text>)
+				@BootstrapHelpers.accordion("Icons", "ggaa", @<text>
+				@BootstrapHelpers.VariablesGroup("Sprites", "lnks", new[] { "iconSpritePath", "iconWhiteSpritePath" })
+				</text>)
+			</div>
+		</div>
+	</div>
+	<div ng-view>
+	</div>
+	<script type="text/javascript">
+		$(document).ready(
+				function () {
+					$('#accordion2').on('shown', function (e) {
+						$(e.target).closest(".accordion-body").css("overflow", "visible");
+						var grp = $(e.target).closest(".accordion-group");
+						var grpTop = grp.position().top;
+						$(this).stop(true, true).animate({ top: -grpTop }, 500);
+					});
+					$('#accordion2').on('show', function (e) {
+						$(e.target).closest(".accordion-group").css("width", "1060px");
+					});
+					$('#accordion2').on('hide', function (e) {
+						$(e.target).closest(".accordion-group").width("100px");
+						$(e.target).closest(".accordion-body").css("overflow", "hidden");
+					});
+					$('#accordion2').on('hidden', function (e) {
+						var opened = $(this).find(".accordion-body.in.collapse");
+						if (opened.length == 0) {
+							$(this).animate({ top: 0 }, 500);
+						}
+					});
+
+
+				})
+	</script>
+</body>
+</html>
