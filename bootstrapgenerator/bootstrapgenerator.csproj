@@ -111,6 +111,8 @@
   <ItemGroup>
     <Content Include="Content\bootstrap\img\glyphicons-halflings-white.png" />
     <Content Include="Content\bootstrap\img\glyphicons-halflings.png" />
+    <Content Include="Content\bootstrap_templates\bootswatch.html" />
+    <Content Include="Content\bootstrap_templates\csstest.html" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular.js" />
@@ -151,7 +153,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="App_Data\bootstrapper\userdata\" />
+  </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
@@ -163,51 +167,53 @@
     <None Include="App_Data\bootstrapper\default_bootstrap.json" />
     <None Include="App_Data\bootstrapper\less\bootstrap.less" />
     <None Include="App_Data\bootstrapper\less\variables.less" />
-    <None Include="Content\bootstrap\less\accordion.less" />
-    <None Include="Content\bootstrap\less\alerts.less" />
-    <None Include="Content\bootstrap\less\bootstrap.less" />
-    <None Include="Content\bootstrap\less\breadcrumbs.less" />
-    <None Include="Content\bootstrap\less\button-groups.less" />
-    <None Include="Content\bootstrap\less\buttons.less" />
-    <None Include="Content\bootstrap\less\carousel.less" />
-    <None Include="Content\bootstrap\less\close.less" />
-    <None Include="Content\bootstrap\less\code.less" />
-    <None Include="Content\bootstrap\less\component-animations.less" />
-    <None Include="Content\bootstrap\less\dropdowns.less" />
-    <None Include="Content\bootstrap\less\forms.less" />
-    <None Include="Content\bootstrap\less\grid.less" />
-    <None Include="Content\bootstrap\less\hero-unit.less" />
-    <None Include="Content\bootstrap\less\labels-badges.less" />
-    <None Include="Content\bootstrap\less\layouts.less" />
-    <None Include="Content\bootstrap\less\mixins.less" />
-    <None Include="Content\bootstrap\less\modals.less" />
-    <None Include="Content\bootstrap\less\navbar.less" />
-    <None Include="Content\bootstrap\less\navs.less" />
-    <None Include="Content\bootstrap\less\pager.less" />
-    <None Include="Content\bootstrap\less\pagination.less" />
-    <None Include="Content\bootstrap\less\popovers.less" />
-    <None Include="Content\bootstrap\less\progress-bars.less" />
-    <None Include="Content\bootstrap\less\reset.less" />
-    <None Include="Content\bootstrap\less\responsive-1200px-min.less" />
-    <None Include="Content\bootstrap\less\responsive-767px-max.less" />
-    <None Include="Content\bootstrap\less\responsive-768px-979px.less" />
-    <None Include="Content\bootstrap\less\responsive-navbar.less" />
-    <None Include="Content\bootstrap\less\responsive-utilities.less" />
-    <None Include="Content\bootstrap\less\responsive.less" />
-    <None Include="Content\bootstrap\less\scaffolding.less" />
-    <None Include="Content\bootstrap\less\sprites.less" />
-    <None Include="Content\bootstrap\less\tables.less" />
-    <None Include="Content\bootstrap\less\thumbnails.less" />
-    <None Include="Content\bootstrap\less\tooltip.less" />
-    <None Include="Content\bootstrap\less\type.less" />
-    <None Include="Content\bootstrap\less\utilities.less" />
-    <None Include="Content\bootstrap\less\variables.less" />
-    <None Include="Content\bootstrap\less\wells.less" />
-    <None Include="Content\bootstrap_default\less\bootstrap.less" />
-    <None Include="Content\bootstrap_default\less\variables.less" />
-    <None Include="Content\Style.less" />
+    <Content Include="Content\bootstrap\less\accordion.less" />
+    <Content Include="Content\bootstrap\less\alerts.less" />
+    <Content Include="Content\bootstrap\less\bootstrap.less" />
+    <Content Include="Content\bootstrap\less\breadcrumbs.less" />
+    <Content Include="Content\bootstrap\less\button-groups.less" />
+    <Content Include="Content\bootstrap\less\buttons.less" />
+    <Content Include="Content\bootstrap\less\carousel.less" />
+    <Content Include="Content\bootstrap\less\close.less" />
+    <Content Include="Content\bootstrap\less\code.less" />
+    <Content Include="Content\bootstrap\less\component-animations.less" />
+    <Content Include="Content\bootstrap\less\dropdowns.less" />
+    <Content Include="Content\bootstrap\less\forms.less" />
+    <Content Include="Content\bootstrap\less\grid.less" />
+    <Content Include="Content\bootstrap\less\hero-unit.less" />
+    <Content Include="Content\bootstrap\less\labels-badges.less" />
+    <Content Include="Content\bootstrap\less\layouts.less" />
+    <Content Include="Content\bootstrap\less\mixins.less" />
+    <Content Include="Content\bootstrap\less\modals.less" />
+    <Content Include="Content\bootstrap\less\navbar.less" />
+    <Content Include="Content\bootstrap\less\navs.less" />
+    <Content Include="Content\bootstrap\less\pager.less" />
+    <Content Include="Content\bootstrap\less\pagination.less" />
+    <Content Include="Content\bootstrap\less\popovers.less" />
+    <Content Include="Content\bootstrap\less\progress-bars.less" />
+    <Content Include="Content\bootstrap\less\reset.less" />
+    <Content Include="Content\bootstrap\less\responsive-1200px-min.less" />
+    <Content Include="Content\bootstrap\less\responsive-767px-max.less" />
+    <Content Include="Content\bootstrap\less\responsive-768px-979px.less" />
+    <Content Include="Content\bootstrap\less\responsive-navbar.less" />
+    <Content Include="Content\bootstrap\less\responsive-utilities.less" />
+    <Content Include="Content\bootstrap\less\responsive.less" />
+    <Content Include="Content\bootstrap\less\scaffolding.less" />
+    <Content Include="Content\bootstrap\less\sprites.less" />
+    <Content Include="Content\bootstrap\less\tables.less" />
+    <Content Include="Content\bootstrap\less\thumbnails.less" />
+    <Content Include="Content\bootstrap\less\tooltip.less" />
+    <Content Include="Content\bootstrap\less\type.less" />
+    <Content Include="Content\bootstrap\less\utilities.less" />
+    <Content Include="Content\bootstrap\less\variables.less" />
+    <Content Include="Content\bootstrap\less\wells.less" />
+    <Content Include="Content\bootstrap_default\less\bootstrap.less" />
+    <Content Include="Content\bootstrap_default\less\variables.less" />
+    <Content Include="Content\Style.less" />
     <Content Include="Views\Shared\_navbar.cshtml" />
     <Content Include="Views\Bootstrap\Index.cshtml" />
+    <Content Include="log4net.config" />
+    <Content Include="log4netDebug.config" />
     <None Include="Views\Bootstrap\Index.cshtml.orig" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
