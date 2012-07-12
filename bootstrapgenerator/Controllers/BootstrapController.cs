@@ -49,6 +49,7 @@ namespace bootstrapgenerator.Controllers
 		public ActionResult Refresh(JObject data)
 		{
 			Bg.SetUserVariablesJson(data);
+			BootstrapRefresher.Instance.Refresh(HttpContext.Session.SessionID);
 			return new EmptyResult();
 		}
 

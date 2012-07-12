@@ -63,6 +63,9 @@
     <Reference Include="SignalR">
       <HintPath>..\packages\SignalR.Server.0.5.2\lib\net40\SignalR.dll</HintPath>
     </Reference>
+    <Reference Include="SignalR.Hosting.AspNet">
+      <HintPath>..\packages\SignalR.Hosting.AspNet.0.5.2\lib\net40\SignalR.Hosting.AspNet.dll</HintPath>
+    </Reference>
     <Reference Include="SignalR.Hosting.Common">
       <HintPath>..\packages\SignalR.Hosting.Common.0.5.2\lib\net40\SignalR.Hosting.Common.dll</HintPath>
     </Reference>
@@ -107,6 +110,8 @@
     <Compile Include="Code\Bootstraper\Less\Lessaak.cs" />
     <Compile Include="Code\Bootstraper\Less\ResponseLogger.cs" />
     <Compile Include="Code\Bootstraper\Less\ServerPathResolver.cs" />
+    <Compile Include="Code\Bootstraper\BootstrapGeneratorFactory.cs" />
+    <Compile Include="Code\SignalR\BootstrapHub.cs" />
     <Compile Include="Code\RazorExtensions.cs" />
     <Compile Include="Code\FileExts.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -132,9 +137,13 @@
     <Content Include="Scripts\Bootstrap\Bootstrap.coffee" />
     <Content Include="Scripts\Bootstrap\Bootstrap.coffee.debug.js" />
     <Content Include="Scripts\colorPicker_src.js" />
+    <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
+    <Content Include="Scripts\jquery-1.6.4.js" />
+    <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.signalR-0.5.2.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />

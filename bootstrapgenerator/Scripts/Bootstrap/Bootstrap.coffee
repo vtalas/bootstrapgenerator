@@ -7,6 +7,8 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
 
   $scope.data = $.parseJSON $element.data("model")
   $scope.colorsrefonly = colorsonly
+  $scope.refreshtoken = ''
+
 
   $scope.showColorPicker = ($event,item)->
 
@@ -35,8 +37,11 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
       data: $scope.data
     ).success((data, status, headers, config) ->
       console.log data
-      $scope.refreshtoken = new Date
+      #$scope.refreshNow()
     )
+
+  $scope.refreshNow = ->
+    $scope.refreshtoken = new Date().getMilliseconds()
 
   $scope.toggleValue = (item) ->
     return (if $scope.hider[item] then true else false)

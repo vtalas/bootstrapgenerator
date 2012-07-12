@@ -14,6 +14,11 @@
 		.Add("~/Scripts/colorPicker_src.js")
 		.Add("~/Scripts/Bootstrap/App.coffee")
 		.Add("~/Scripts/Bootstrap/Bootstrap.coffee")
+		.Add("~/Scripts/Bootstrap/Bootstrap.coffee")
+		.Add("~/Scripts/jquery.signalR-0.5.2.js")
+		.Add("~/signalr/hubs")
+
+
 	)
 </head>
 <style>
@@ -52,11 +57,12 @@
 </style>
 <body>
 	<div ng-controller="bootstrap" data-model="@Model">
-		<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" />
-			@Html.Partial("_navbar")
+		<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" class="usr" />
+		@Html.Partial("_navbar")
 		<br />
 		<br />
 		<br />
+		
 		<div class="xxx">
 			<div class="accordion" id="accordion2">
 				@BootstrapHelpers.accordion("Colors", "vv", @<text>
@@ -94,30 +100,59 @@
 	<div ng-view>
 	</div>
 	<script type="text/javascript">
-		$(document).ready(
-				function () {
-					$('#accordion2').on('shown', function (e) {
-						$(e.target).closest(".accordion-body").css("overflow", "visible");
-						var grp = $(e.target).closest(".accordion-group");
-						var grpTop = grp.position().top;
-						$(this).stop(true, true).animate({ top: -grpTop }, 500);
-					});
-					$('#accordion2').on('show', function (e) {
-						$(e.target).closest(".accordion-group").css("width", "1060px");
-					});
-					$('#accordion2').on('hide', function (e) {
-						$(e.target).closest(".accordion-group").width("100px");
-						$(e.target).closest(".accordion-body").css("overflow", "hidden");
-					});
-					$('#accordion2').on('hidden', function (e) {
-						var opened = $(this).find(".accordion-body.in.collapse");
-						if (opened.length == 0) {
-							$(this).animate({ top: 0 }, 500);
-						}
-					});
+		$(function () {
+
+			$('#accordion2').on('shown', function (e) {
+				$(e.target).closest(".accordion-body").css("overflow", "visible");
+				var grp = $(e.target).closest(".accordion-group");
+				var grpTop = grp.position().top;
+				$(this).stop(true, true).animate({ top: -grpTop }, 500);
+			});
+			$('#accordion2').on('show', function (e) {
+				$(e.target).closest(".accordion-group").css("width", "1060px");
+			});
+			$('#accordion2').on('hide', function (e) {
+				$(e.target).closest(".accordion-group").width("100px");
+				$(e.target).closest(".accordion-body").css("overflow", "hidden");
+			});
+			$('#accordion2').on('hidden', function (e) {
+				var opened = $(this).find(".accordion-body.in.collapse");
+				if (opened.length == 0) {
+					$(this).animate({ top: 0 }, 500);
+				}
+			});
+
+			var bthub = $.connection.bootstrapHub;  // the generated client-side hub proxy
+
+			bthub.refreshLess = function () {
+				var el = $("[ng-model='refreshtoken']").val(new Date().getMilliseconds());
+				var scope = angular.element(el).scope;
+				//console.log(el, scope, scope.refreshtoken);
+				var a = $(".usr").attr("href");
+
+				$(".usr").attr("href", a + "aa");
+				console.log("ref" );
+				
+			};
+
+			$(".refresh").click(function () {
+				//bthub.refreshLess();
+				var el = $(".ax");
+			});
 
 
-				})
+
+			// Start the connection
+			$.connection.hub.start()
+						.done(function () {
+							bthub.init().done(function (xx) { console.log(xx) });
+						});
+
+
+		})
+
+			
+
 	</script>
 </body>
 </html>
