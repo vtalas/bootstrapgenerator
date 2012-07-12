@@ -125,22 +125,9 @@
 			var bthub = $.connection.bootstrapHub;  // the generated client-side hub proxy
 
 			bthub.refreshLess = function () {
-				var el = $("[ng-model='refreshtoken']").val(new Date().getMilliseconds());
-				var scope = angular.element(el).scope;
-				//console.log(el, scope, scope.refreshtoken);
-				var a = $(".usr").attr("href");
-
-				$(".usr").attr("href", a + "aa");
-				console.log("ref" );
-				
+				var hrefold = $(".usr").attr("href");
+				$(".usr").attr("href", hrefold + "aa");
 			};
-
-			$(".refresh").click(function () {
-				//bthub.refreshLess();
-				var el = $(".ax");
-			});
-
-
 
 			// Start the connection
 			$.connection.hub.start()

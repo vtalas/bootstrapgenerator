@@ -1,11 +1,6 @@
 ﻿using System;
-using System.IO;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SignalR;
 using SignalR.Hubs;
-using bootstrapgenerator.Code.Bootstraper;
-using log4net;
 
 namespace bootstrapgenerator.Code.SignalR
 {
@@ -22,17 +17,15 @@ namespace bootstrapgenerator.Code.SignalR
 			_refresher = refresher;
         }
 
-		public string Init()
+		public void Init()
 		{
-			Groups.Add(Context.ConnectionId, SessionId);
-			return SessionId;
+			_refresher.Init(SessionId, Context);
 		}
 
 		public void Refresh()
 		{
 			_refresher.Refresh(SessionId);
 		}
-
 	}
 
 	public class BootstrapRefresher
@@ -47,6 +40,11 @@ namespace bootstrapgenerator.Code.SignalR
 		public void Refresh(string id)
 		{
 			GetClients(id).refreshLess();
+		}
+
+		public void Init(string id, HubCallerContext context )
+		{
+			GetGroups().Add(context.ConnectionId, id);
 		}
 
 		static IGroupManager GetGroups()
