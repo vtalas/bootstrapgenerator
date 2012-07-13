@@ -24,7 +24,6 @@
       1;
       colorPicker($event);
       return colorPicker.exportColor = function() {
-        console.log(colorPicker.CP.hex);
         return item.value = "#" + colorPicker.CP.hex;
       };
     };
@@ -34,7 +33,8 @@
         url: "/bootstrap/Refresh",
         data: $scope.data
       }).success(function(data, status, headers, config) {
-        return console.log(data);
+        console.log(data);
+        return $scope.refreshNow();
       });
     };
     $scope.refreshNow = function() {

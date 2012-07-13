@@ -233,7 +233,9 @@
     <Content Include="Views\Bootstrap\Index.cshtml" />
     <Content Include="log4net.config" />
     <Content Include="log4netDebug.config" />
-    <None Include="Views\Bootstrap\Index.cshtml.orig" />
+    <Content Include="Views\Bootstrap\_BootsrapLayout.cshtml" />
+    <Content Include="Views\Bootstrap\Preview.cshtml" />
+    <Content Include="Views\Bootstrap\PreviewMode.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
@@ -252,7 +254,7 @@
         <WebProjectProperties>
           <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>60084</DevelopmentServerPort>
+          <DevelopmentServerPort>62567</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>
           </IISUrl>

@@ -1,0 +1,34 @@
+﻿@{
+	Layout = "_BootsrapLayout.cshtml";
+}
+@section head{
+
+}
+
+	<div ng-controller="bootstrap" data-model="@Model">
+		<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" class="usr" />
+		@Html.Partial("_navbar")
+		
+	</div>
+	<div ng-view>
+	</div>
+	<script type="text/javascript">
+		$(function () {
+
+			var bthub = $.connection.bootstrapHub;  // the generated client-side hub proxy
+
+			bthub.refreshLess = function () {
+				var hrefold = $(".usr").attr("href");
+				$(".usr").attr("href", hrefold + "aa");
+			};
+
+			// Start the connection
+			$.connection.hub.start()
+						.done(function () {
+							bthub.init().done(function (xx) { console.log(xx) });
+						});
+		})
+
+			
+
+	</script>

@@ -29,6 +29,16 @@ namespace bootstrapgenerator.Controllers
 			return View(Bg.GetUserVariablesJson());
         }
 
+		public ActionResult PreviewMode()
+        {
+			return View(Bg.GetUserVariablesJson());
+        }
+
+		public ActionResult Preview()
+        {
+			return View();
+        }
+
 		public ActionResult UserBootstrap(bool? compress)
 		{
 			var c = compress.HasValue && compress.Value;

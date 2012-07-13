@@ -27,7 +27,6 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
     colorPicker($event)
 
     colorPicker.exportColor = ->
-      console.log colorPicker.CP.hex
       item.value = "#"+colorPicker.CP.hex
 
   $scope.refresh = ->
@@ -37,7 +36,7 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
       data: $scope.data
     ).success((data, status, headers, config) ->
       console.log data
-      #$scope.refreshNow()
+      $scope.refreshNow()
     )
 
   $scope.refreshNow = ->

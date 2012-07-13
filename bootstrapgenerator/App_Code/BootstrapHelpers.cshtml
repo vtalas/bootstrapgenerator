@@ -1,5 +1,6 @@
 ﻿@using bootstrapgenerator.Code
-@helper xxx(string item)
+
+@helper VariablesItem(string item)
 	{
 	<tr>
 		<td>
@@ -11,6 +12,7 @@
 		</td>
 	</tr>
 }
+
 @helper VariablesGroup(string name, string id, string[] values)
 	{
 	<text>
@@ -24,15 +26,17 @@
 		@for (int i = 0; i < len; i++)
   {
 			<table style="float: left">
-				@values.List(i, count, @<text>@xxx(item)</text>)
+				@values.List(i, count, @<text>@VariablesItem(item)</text>)
 			</table>
   }
 	</div>
 	</text>;
-	 	
 }
-@helper accordion(string name, string id, Func<dynamic, HelperResult> action)
+
+@helper AccordionGroup(string name, Func<dynamic, HelperResult> action)
 	{
+	var id = Guid.NewGuid().ToString();
+
 	<div class="accordion-group">
 		<div class="accordion-heading">
 			<a class="accordion-toggle" data-toggle="collapse" data-parent="#accordion2" href="#@id" >@name</a>
@@ -43,4 +47,10 @@
 			</div>
 		</div>
 	</div>
+}
+
+@helper PreviewModeGroup(string name, Func<dynamic, HelperResult> action)
+	{
+	var id = Guid.NewGuid().ToString();
+				@action(null)
 }
