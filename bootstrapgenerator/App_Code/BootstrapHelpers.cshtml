@@ -1,5 +1,4 @@
 ﻿@using bootstrapgenerator.Code
-
 @helper VariablesItem(string item)
 	{
 	<tr>
@@ -12,7 +11,6 @@
 		</td>
 	</tr>
 }
-
 @helper VariablesGroup(string name, string id, string[] values)
 	{
 	<text>
@@ -32,10 +30,9 @@
 	</div>
 	</text>;
 }
-
 @helper AccordionGroup(string name, Func<dynamic, HelperResult> action)
 	{
-	var id = Guid.NewGuid().ToString();
+		var id = Guid.NewGuid().ToString();
 
 	<div class="accordion-group">
 		<div class="accordion-heading">
@@ -48,9 +45,7 @@
 		</div>
 	</div>
 }
-
 @helper PreviewModeGroup(string name, Func<dynamic, HelperResult> action)
 	{
-	var id = Guid.NewGuid().ToString();
-				@action(null)
+	@action(null)
 }

@@ -2,70 +2,57 @@
 	Layout = "_BootsrapLayout.cshtml";
 }
 @section head{
-
-	@Helpers.BundleCss("previewmode", x=>x.Add("~/Content/PreviewMode.less"))
+	@Helpers.BundleCss("previewmode", x => x.Add("~/Content/PreviewMode.less"))
 }
-
-<style>
-	.accordion-group
-	{
-		background-color: white;
-		position: relative;
-	}
-	#accordion2
-	{
-		position: relative;
-		width: 100%;
-	}
-	.cPSkin {
-		z-index: 100000;
-	}
-</style>
-	<div ng-controller="bootstrap" data-model="@Model" id="accordion2">
-		<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" class="usr" />
-		@Html.Partial("_navbar")
-		<br/><br/><br/>
-	<div class="PreviewMode groups">
+<div ng-controller="bootstrap" data-model="@Model" id="accordion2">
+	<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" class="usr" />
+	@Html.Partial("_navbar")
+	<br />
+	<br />
+	<br />
+	<div class="PreviewMode groups clearfix">
 		@BootstrapHelpers.PreviewModeGroup("Colors", @<text>
-				@BootstrapHelpers.VariablesGroup("Scaffolding", "scf", new[] { "bodyBackground", "textColor", "linkColor", "linkColorHover" })
-				@BootstrapHelpers.VariablesGroup("Grays", "grs", new[] { "black", "grayDarker", "grayDark", "gray", "grayLight", "grayLighter", "white" })
-				@BootstrapHelpers.VariablesGroup("Accent colors", "acol", new[] { "blue", "blueDark", "green", "red", "yellow", "orange", "pink", "purple" })
-				</text>)
-				@BootstrapHelpers.PreviewModeGroup("Fonts", @<text>
-				@BootstrapHelpers.VariablesGroup("Typography", "tpgr", new[] { "sansFontFamily", "serifFontFamily", "monoFontFamily", "baseFontSize", "baseFontFamily", "baseLineHeight", "altFontFamily", "headingsFontFamily", "headingsFontWeight", "headingsColor", })
-				</text>)
-				@BootstrapHelpers.PreviewModeGroup("Navigation", @<text>
-				@BootstrapHelpers.VariablesGroup("Navbar", "navb", new[] { "navbarHeight", "navbarBackground", "navbarBackgroundHighlight", "navbarText", "navbarLinkColor", "navbarLinkColorHover", "navbarLinkColorActive", "navbarLinkBackgroundHover", "navbarLinkBackgroundActive", "navbarSearchBackground", "navbarSearchBackgroundFocus", "navbarSearchBorder", "navbarSearchPlaceholderColor", "navbarBrandColor" })
-				</text>)
-				@BootstrapHelpers.PreviewModeGroup("Buttons etc", @<text>
-				@BootstrapHelpers.VariablesGroup("Buttons", "btn", new[] { "btnBackground", "btnBackgroundHighlight", "btnBorder", "btnPrimaryBackground", "btnPrimaryBackgroundHighlight", "btnInfoBackground", "btnInfoBackgroundHighlight", "btnSuccessBackground", "btnSuccessBackgroundHighlight", "btnWarningBackground", "btnWarningBackgroundHighlight", "btnDangerBackground", "btnDangerBackgroundHighlight", "btnInverseBackground", "btnInverseBackgroundHighlight" })
-				@BootstrapHelpers.VariablesGroup("Dropdowns", "ldrp", new[] { "dropdownBackground", "dropdownBorder", "dropdownLinkColor", "dropdownLinkColorHover", "dropdownLinkBackgroundHover", "dropdownDividerTop", "dropdownDividerBottom" })
-				@BootstrapHelpers.VariablesGroup("Tables", "hagscdgh", new[] { "tableBackground", "tableBackgroundAccent", "tableBackgroundHover", "tableBorder" })
-				</text>)
-				@BootstrapHelpers.PreviewModeGroup("Forms, inputs", @<text>
-				@BootstrapHelpers.VariablesGroup("Form states and alerts", "fa", new[] { "warningText", "warningBackground", "warningBorder", "errorText", "errorBackground", "errorBorder", "successText", "successBackground", "successBorder", "infoText", "infoBackground", "infoBorder" })
-				@BootstrapHelpers.VariablesGroup("Forms", "frm", new[] { "inputBackground", "inputBorder", "inputBorderRadius", "inputDisabledBackground", "formActionsBackground" })
-				@BootstrapHelpers.VariablesGroup("Placeholder color", "plcc", new[] { "placeholderText", "hrBorder" })
-				</text>)
-				@BootstrapHelpers.PreviewModeGroup("Grid", @<text>
-				@BootstrapHelpers.VariablesGroup("Hero unit", "hrh", new[] { "heroUnitBackground", "heroUnitHeadingColor", "heroUnitLeadColor" })
-				@BootstrapHelpers.VariablesGroup("Grid 940px", "grd99", new[] { "gridColumns", "gridColumnWidth", "gridGutterWidth", "gridRowWidth" })
-				@BootstrapHelpers.VariablesGroup("Fluid grid", "fga", new[] { "fluidGridColumnWidth", "fluidGridGutterWidth" })
-				</text>)
-				@BootstrapHelpers.PreviewModeGroup("Icons", @<text>
-				@BootstrapHelpers.VariablesGroup("Sprites", "lnks", new[] { "iconSpritePath", "iconWhiteSpritePath" })
-				</text>)
-				</div>
-		@Html.ActionLink("Preview", "Preview")
-		<div ng-view>
+		@BootstrapHelpers.VariablesGroup("Scaffolding", "scf", new[] { "bodyBackground", "textColor", "linkColor", "linkColorHover" })
+		@BootstrapHelpers.VariablesGroup("Grays", "grs", new[] { "black", "grayDarker", "grayDark", "gray", "grayLight", "grayLighter", "white" })
+		@BootstrapHelpers.VariablesGroup("Accent colors", "acol", new[] { "blue", "blueDark", "green", "red", "yellow", "orange", "pink", "purple" })
+		</text>)
+		@BootstrapHelpers.PreviewModeGroup("Fonts", @<text>
+		@BootstrapHelpers.VariablesGroup("Typography", "tpgr", new[] { "sansFontFamily", "serifFontFamily", "monoFontFamily", "baseFontSize", "baseFontFamily", "baseLineHeight", "altFontFamily", "headingsFontFamily", "headingsFontWeight", "headingsColor", })
+		</text>)
+		@BootstrapHelpers.PreviewModeGroup("Navigation", @<text>
+		@BootstrapHelpers.VariablesGroup("Navbar", "navb", new[] { "navbarHeight", "navbarBackground", "navbarBackgroundHighlight", "navbarText", "navbarLinkColor", "navbarLinkColorHover", "navbarLinkColorActive", "navbarLinkBackgroundHover", "navbarLinkBackgroundActive", "navbarSearchBackground", "navbarSearchBackgroundFocus", "navbarSearchBorder", "navbarSearchPlaceholderColor", "navbarBrandColor" })
+		</text>)
+		@BootstrapHelpers.PreviewModeGroup("Buttons etc", @<text>
+		@BootstrapHelpers.VariablesGroup("Buttons", "btn", new[] { "btnBackground", "btnBackgroundHighlight", "btnBorder", "btnPrimaryBackground", "btnPrimaryBackgroundHighlight", "btnInfoBackground", "btnInfoBackgroundHighlight", "btnSuccessBackground", "btnSuccessBackgroundHighlight", "btnWarningBackground", "btnWarningBackgroundHighlight", "btnDangerBackground", "btnDangerBackgroundHighlight", "btnInverseBackground", "btnInverseBackgroundHighlight" })
+		@BootstrapHelpers.VariablesGroup("Dropdowns", "ldrp", new[] { "dropdownBackground", "dropdownBorder", "dropdownLinkColor", "dropdownLinkColorHover", "dropdownLinkBackgroundHover", "dropdownDividerTop", "dropdownDividerBottom" })
+		@BootstrapHelpers.VariablesGroup("Tables", "hagscdgh", new[] { "tableBackground", "tableBackgroundAccent", "tableBackgroundHover", "tableBorder" })
+		</text>)
+		@BootstrapHelpers.PreviewModeGroup("Forms, inputs", @<text>
+		@BootstrapHelpers.VariablesGroup("Form states and alerts", "fa", new[] { "warningText", "warningBackground", "warningBorder", "errorText", "errorBackground", "errorBorder", "successText", "successBackground", "successBorder", "infoText", "infoBackground", "infoBorder" })
+		@BootstrapHelpers.VariablesGroup("Forms", "frm", new[] { "inputBackground", "inputBorder", "inputBorderRadius", "inputDisabledBackground", "formActionsBackground" })
+		@BootstrapHelpers.VariablesGroup("Placeholder color", "plcc", new[] { "placeholderText", "hrBorder" })
+		</text>)
+		@BootstrapHelpers.PreviewModeGroup("Grid", @<text>
+		@BootstrapHelpers.VariablesGroup("Hero unit", "hrh", new[] { "heroUnitBackground", "heroUnitHeadingColor", "heroUnitLeadColor" })
+		@BootstrapHelpers.VariablesGroup("Grid 940px", "grd99", new[] { "gridColumns", "gridColumnWidth", "gridGutterWidth", "gridRowWidth" })
+		@BootstrapHelpers.VariablesGroup("Fluid grid", "fga", new[] { "fluidGridColumnWidth", "fluidGridGutterWidth" })
+		</text>)
+		@BootstrapHelpers.PreviewModeGroup("Icons", @<text>
+		@BootstrapHelpers.VariablesGroup("Sprites", "lnks", new[] { "iconSpritePath", "iconWhiteSpritePath" })
+		</text>)
 	</div>
+	@Html.ActionLink("Preview", "Preview")
+	<div ng-view>
 	</div>
-	<script type="text/javascript">
-		$(function () {
+</div>
+<script type="text/javascript">
+	$(function () {
 
 
-		})
+
+
+	})
 
 			
 
-	</script>
+</script>

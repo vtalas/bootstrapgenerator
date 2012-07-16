@@ -4,6 +4,7 @@
 	<title>@ViewBag.Title</title>
 	@Helpers.BundleCss("bootstrap#.css", x =>
 		x.Add("~/Content/Style.less")
+		.Add("~/Content/minicolors/jquery.miniColors.css")
 			//.Add("~/Content/bootstrap_default/less/bootstrap.less")
 		)
 	@Helpers.BundleJs("bootstrap#.js", x =>
@@ -11,7 +12,8 @@
 		.Add("~/Scripts/angular.js")
 		.Add("~/Scripts/angular-resource.js")
 		.Add("~/Scripts/bootstrap.js")
-		.Add("~/Scripts/colorPicker_src.js")
+		//.Add("~/Scripts/colorPicker_src.js")
+		.Add("~/Scripts/jquery.miniColors.js")
 		.Add("~/Scripts/Bootstrap/App.coffee")
 		.Add("~/Scripts/Bootstrap/Bootstrap.coffee")
 		.Add("~/Scripts/Bootstrap/Bootstrap.coffee")
@@ -28,10 +30,26 @@
 		</header>
 		<section id="main">
 			@RenderBody()
+
 		</section>
 		<footer>
-		
+			<input type="text" name="color3" class="color-picker" size="6" value="#abCdeF" />
+			<br />
+			<br />
+			<br />
+			<br />
+			<br />
+
 		</footer>
 	</div>
+	<script>
+		$(document).ready(function(parameters) {
+			
+				
+		})
+	</script>
+
+
+
 </body>
 </html>

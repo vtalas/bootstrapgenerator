@@ -14,20 +14,26 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
 
     all = $scope.data
     basiccolors=$filter("nameType")(all, "basiccolor", item.value )
-    el = $event.currentTarget
+    #el = $event.currentTarget
+    el = $event.target
 
     $(el).typeahead({
                   source:basiccolors,
                   updater: (val)->
                     $(el).val(val)
                     $scope.data[name].value = val
+
                   items:11
                   });
     1
-    colorPicker($event)
 
-    colorPicker.exportColor = ->
-      item.value = "#"+colorPicker.CP.hex
+    $(el).miniColors({
+                    letterCase: 'uppercase',
+                    change:(hex, rgb)->
+                      item.value = hex
+                      $(el).css("background-color", hex);
+    })
+    $(el).miniColors("show")
 
   $scope.refresh = ->
     $http(
@@ -35,7 +41,6 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
       url: "/bootstrap/Refresh"
       data: $scope.data
     ).success((data, status, headers, config) ->
-      console.log data
       $scope.refreshNow()
     )
 
@@ -48,7 +53,6 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
 
   $scope.toggle = (item)->
     $scope.hider[item] = !$scope.toggleValue(item);
-    console.log $scope.hider, item
 
   1
 window.bootstrap = bootstrap

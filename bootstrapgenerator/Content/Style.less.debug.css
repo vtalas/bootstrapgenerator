@@ -10,27 +10,17 @@ h2 {
 h3 {
   font-size: 100%;
 }
-.adminheader {
-  color: red;
+.accordion-group {
+  background-color: white;
+  position: relative;
+  z-index: 999;
 }
-.adminheader a {
-  text-decoration: none;
-  color: white;
+#accordion2 {
+  position: relative;
+  width: 100%;
 }
-.adminheader a:hover {
-  color: coral;
-}
-.adminheader a:visited {
-  color: white;
-}
-.adminheader ul.mainmenu li {
-  display: inline-block;
-  background-color: #222222;
-  padding-left: 1em;
-  padding-right: 1em;
-  padding-bottom: 0.5em;
-  padding-top: 0.5em;
-}
-.admincontent {
-  margin: 1em;
+.xxx {
+  position: fixed;
+  top: 40px;
+  width: 100px;
 }

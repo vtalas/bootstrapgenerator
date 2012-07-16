@@ -12,7 +12,7 @@
       var all, basiccolors, el;
       all = $scope.data;
       basiccolors = $filter("nameType")(all, "basiccolor", item.value);
-      el = $event.currentTarget;
+      el = $event.target;
       $(el).typeahead({
         source: basiccolors,
         updater: function(val) {
@@ -22,10 +22,14 @@
         items: 11
       });
       1;
-      colorPicker($event);
-      return colorPicker.exportColor = function() {
-        return item.value = "#" + colorPicker.CP.hex;
-      };
+      $(el).miniColors({
+        letterCase: 'uppercase',
+        change: function(hex, rgb) {
+          item.value = hex;
+          return $(el).css("background-color", hex);
+        }
+      });
+      return $(el).miniColors("show");
     };
     $scope.refresh = function() {
       return $http({
@@ -33,7 +37,6 @@
         url: "/bootstrap/Refresh",
         data: $scope.data
       }).success(function(data, status, headers, config) {
-        console.log(data);
         return $scope.refreshNow();
       });
     };
@@ -48,8 +51,7 @@
       }
     };
     $scope.toggle = function(item) {
-      $scope.hider[item] = !$scope.toggleValue(item);
-      return console.log($scope.hider, item);
+      return $scope.hider[item] = !$scope.toggleValue(item);
     };
     return 1;
   };
