@@ -3,7 +3,7 @@
   @reference ../jquery-1.7.2.js
   @reference ../angular.js
   */
-  var aaaController, module;
+  var appCtrl, module;
   module = angular.module("bootstrapApp", []);
   module.config(function($routeProvider, $provide, $filterProvider) {
     $filterProvider.register('nameType', function() {
@@ -45,9 +45,16 @@
         return x;
       };
     });
-    $provide.factory("datajson", function() {
-      var d;
+    $provide.factory("datajson", function($http) {
+      var d, x;
       d = $.parseJSON(angular.element("html").data("modeldata"));
+      x = $http({
+        method: "POST",
+        url: "/bootstrap/JSONDATA"
+      }).success(function(data, status, headers, config) {
+        return console.log(data, "data sjons  ");
+      });
+      console.log(x, "x");
       return d;
     });
     $provide.factory("colorsonly", function($filter, datajson) {
@@ -56,14 +63,20 @@
       return a;
     });
     return $routeProvider.when("/csstest", {
-      controller: aaaController,
+      controller: appCtrl,
       templateUrl: "/Content/bootstrap_templates/csstest.html"
     }).when("/bootswatch", {
-      controller: aaaController,
+      controller: appCtrl,
       templateUrl: "/Content/bootstrap_templates/bootswatch.html"
+    }).when("/components", {
+      controller: appCtrl,
+      templateUrl: "/Content/bootstrap_templates/components.html"
     }).otherwise({
       redirectTo: '/csstest'
     });
+  });
+  module.directive("colorpicker", function(datajson, $filter) {
+    return 1;
   });
   module.directive("bootstrapelem", function(datajson, $filter) {
     var directiveDefinitionObject;
@@ -112,6 +125,6 @@
     };
     return directiveDefinitionObject;
   });
-  aaaController = function($scope, $http) {};
+  appCtrl = function($scope, $http) {};
   1;
 }).call(this);

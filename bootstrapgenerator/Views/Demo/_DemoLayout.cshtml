@@ -1,0 +1,38 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<title>@ViewBag.Title</title>
+	@Helpers.BundleCss("bootstrap#.css", x =>
+		x.Add("~/Content/Style.less")
+		)
+	@Helpers.BundleJs("bootstrap#.js", x =>
+		x.Add("~/Scripts/jquery-1.7.2.js")
+		.Add("~/Scripts/angular.js")
+		.Add("~/Scripts/angular-resource.js")
+		.Add("~/Scripts/jquery.signalR-0.5.2.js")
+		.Add("~/signalr/hubs")
+	)
+	
+	@RenderSection("head",false)
+</head>
+<body>
+	<div class="page">
+		<header>
+
+		</header>
+		<section id="main">
+			@RenderBody()
+		</section>
+		<footer>
+		</footer>
+	</div>
+	<script>
+		$(document).ready(function (parameters) {
+
+		})
+	</script>
+
+
+
+</body>
+</html>

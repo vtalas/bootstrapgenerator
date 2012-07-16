@@ -1,0 +1,28 @@
+﻿@{
+Layout = "_DemoLayout.cshtml";
+}
+
+@section head
+{
+@Helpers.BundleJs("demo#.js", x =>
+x.Add("~/Scripts/demo/ex1.coffee")
+)
+
+}
+
+
+
+<div ng-app>
+
+	hide:
+	<input type="checkbox" ng-model="check"/>
+
+	<div ng-show="!check">
+		<input ng-model="color"/>
+	</div>
+
+	<span style="color:{{color}}" >{{color}}</span>
+
+</div>
+
+

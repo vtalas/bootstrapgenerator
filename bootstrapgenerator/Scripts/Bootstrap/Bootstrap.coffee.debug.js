@@ -6,6 +6,7 @@
   var bootstrap;
   bootstrap = function($scope, $http, $element, colorsonly, $filter) {
     $scope.data = $.parseJSON($element.data("model"));
+    console.log($scope);
     $scope.colorsrefonly = colorsonly;
     $scope.refreshtoken = '';
     $scope.showColorPicker = function($event, item) {

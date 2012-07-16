@@ -6,6 +6,9 @@
 bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
 
   $scope.data = $.parseJSON $element.data("model")
+
+
+  console.log $scope
   $scope.colorsrefonly = colorsonly
   $scope.refreshtoken = ''
 
@@ -14,7 +17,7 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
 
     all = $scope.data
     basiccolors=$filter("nameType")(all, "basiccolor", item.value )
-    #el = $event.currentTarget
+
     el = $event.target
 
     $(el).typeahead({

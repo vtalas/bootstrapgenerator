@@ -31,8 +31,17 @@ module.config ($routeProvider,$provide,$filterProvider) ->
       x
   )
 
-  $provide.factory("datajson", ()->
+  $provide.factory("datajson", ($http)->
     d = $.parseJSON angular.element("html").data("modeldata")
+    x = $http(
+      method: "POST"
+      url: "/bootstrap/JSONDATA"
+#      data: $scope.data
+    ).success((data, status, headers, config) ->
+                console.log(data, "data sjons  ")
+    )
+    console.log x, "x"
+
     d
   )
   $provide.factory("colorsonly", ($filter,datajson)->
@@ -40,13 +49,17 @@ module.config ($routeProvider,$provide,$filterProvider) ->
     a
   )
 
-  $routeProvider.when("/csstest",
-    controller: aaaController
-    templateUrl : "/Content/bootstrap_templates/csstest.html"
-  ).when("/bootswatch",
-    controller: aaaController
-    templateUrl : "/Content/bootstrap_templates/bootswatch.html"
+  $routeProvider
+  .when("/csstest", controller: appCtrl, templateUrl : "/Content/bootstrap_templates/csstest.html"  )
+  .when("/bootswatch", controller: appCtrl ,templateUrl : "/Content/bootstrap_templates/bootswatch.html")
+  .when("/components", controller: appCtrl , templateUrl : "/Content/bootstrap_templates/components.html"
   ).otherwise redirectTo: '/csstest'
+
+
+
+module.directive "colorpicker", (datajson,$filter) ->
+  1
+
 
 module.directive "bootstrapelem", (datajson,$filter) ->
 
@@ -83,7 +96,7 @@ module.directive "bootstrapelem", (datajson,$filter) ->
               el.css "background", r if r
   directiveDefinitionObject
 
-aaaController = ($scope, $http) ->
+appCtrl = ($scope, $http) ->
   # Type here!
 
 #  days =

@@ -3,6 +3,7 @@ using System.IO;
 using System.Web.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
+using bootstrapgenerator.Code;
 using bootstrapgenerator.Code.Bootstraper;
 using bootstrapgenerator.Code.Bootstraper.DataRepository;
 using bootstrapgenerator.Code.Bootstraper.Less;
@@ -28,6 +29,10 @@ namespace bootstrapgenerator.Controllers
         {
 			return View(Bg.GetUserVariablesJson());
         }
+		public ActionResult Jsondata()
+        {
+			return new JSONNetResult(Bg.GetUserVariablesJson());
+		}
 
 		public ActionResult PreviewMode()
         {
