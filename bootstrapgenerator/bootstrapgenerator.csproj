@@ -139,18 +139,6 @@
     <Content Include="Scripts\Bootstrap\App.coffee.debug.js" />
     <Content Include="Scripts\Bootstrap\Bootstrap.coffee" />
     <Content Include="Scripts\Bootstrap\Bootstrap.coffee.debug.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-alert.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-button.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-carousel.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-collapse.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-dropdown.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-modal.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-popover.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-scrollspy.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-tab.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-tooltip.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-transition.js" />
-    <Content Include="Scripts\Bootstrap\js\bootstrap-typeahead.js" />
     <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
@@ -188,6 +176,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\bootstrapper\userdata\" />
+    <Folder Include="Scripts\Bootstrap\js\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
