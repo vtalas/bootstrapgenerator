@@ -4,7 +4,7 @@
 @section head{
 	@Helpers.BundleCss("previewmode", x => x.Add("~/Content/PreviewMode.less"))
 }
-<div ng-controller="bootstrap" data-model="@Model" id="accordion2">
+<div ng-controller="bootstrap"  id="accordion2">
 	<link href="@Url.Content("/bootstrap/UserBootstrap?{{refreshtoken}}")" rel="stylesheet" type="text/css" class="usr" />
 	@Html.Partial("_navbar")
 	<br />

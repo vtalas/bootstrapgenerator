@@ -27,7 +27,6 @@ if(jQuery) (function($) {
 //				trigger.insertAfter(input);
 				
 				// Set input data and update attributes
-                console.log("kjbasdjkbS")
 				input
 					.addClass('miniColors')
 					.data('original-maxlength', input.attr('maxlength') || null)

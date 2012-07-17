@@ -3,15 +3,20 @@
 @reference ../angular.js
 ###
 
-bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
+bootstrap = ($scope, $http, $element,$filter,datajsonPromise) ->
 
-  $scope.data = $.parseJSON $element.data("model")
+#  $scope.data = $.parseJSON $element.data("model")
 
+  datajsonPromise.then((rs)->
+    $scope.data = rs.data
+  )
 
-  console.log $scope
-  $scope.colorsrefonly = colorsonly
+#  $scope.colorsrefonly = colorsonly
+#  colorsonly.then((data)->
+#    console.log(data)
+#  )
+
   $scope.refreshtoken = ''
-
 
   $scope.showColorPicker = ($event,item)->
 
@@ -19,16 +24,6 @@ bootstrap = ($scope, $http, $element,colorsonly, $filter) ->
     basiccolors=$filter("nameType")(all, "basiccolor", item.value )
 
     el = $event.target
-
-    $(el).typeahead({
-                  source:basiccolors,
-                  updater: (val)->
-                    $(el).val(val)
-                    $scope.data[name].value = val
-
-                  items:11
-                  });
-    1
 
     $(el).miniColors({
                     letterCase: 'uppercase',

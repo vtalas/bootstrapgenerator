@@ -31,23 +31,26 @@ module.config ($routeProvider,$provide,$filterProvider) ->
       x
   )
 
-  $provide.factory("datajson", ($http)->
-    d = $.parseJSON angular.element("html").data("modeldata")
+#  $provide.factory("datajson", ($http)->
+#    d = $.parseJSON angular.element("html").data("modeldata")
+#  )
+
+  $provide.factory("datajsonPromise", ($http)->
     x = $http(
       method: "POST"
       url: "/bootstrap/JSONDATA"
 #      data: $scope.data
-    ).success((data, status, headers, config) ->
-                console.log(data, "data sjons  ")
     )
-    console.log x, "x"
+    x
+  )
 
-    d
-  )
-  $provide.factory("colorsonly", ($filter,datajson)->
-    a =  $filter("typevalue")(datajson, "color")
-    a
-  )
+#  $provide.factory("colorsonly", ($filter,datajsonPromise, $q)->
+#    defer = $q.defer()
+#    datajsonPromise.then((rs)->
+#      defer.resolve($filter("typevalue")(rs.data, "color"))
+#    )
+#    defer.promise
+#  )
 
   $routeProvider
   .when("/csstest", controller: appCtrl, templateUrl : "/Content/bootstrap_templates/csstest.html"  )
@@ -57,33 +60,39 @@ module.config ($routeProvider,$provide,$filterProvider) ->
 
 
 
-module.directive "colorpicker", (datajson,$filter) ->
+module.directive "colorpicker", ($filter) ->
   1
 
 
-module.directive "bootstrapelem", (datajson,$filter) ->
-
+module.directive "bootstrapelem", ($filter, datajsonPromise) ->
   directiveDefinitionObject =
     require : '?ngModel',
     link: (scope, el, tAttrs, controller) ->
+      jsondata = {}
+      datajsonPromise.then((rs)->jsondata = rs.data)
 
       controller.$setViewValue = (val)->
-        basiccolors=$filter("nameType")(scope.data, "basiccolor" )
-        $(el).typeahead({
+        basiccolors=$filter("nameType")(jsondata, "basiccolor" )
+        el.typeahead({
                           source:basiccolors,
                           updater: (val)->
-                            colorsonly =  $filter("typevalue")(scope.data, "color","basiccolor" )
+                            colorsonly =  $filter("typevalue")(jsondata, "color","basiccolor" )
                             r = colorsonly[val.substr(1)]
-                            el.css "background", r if r
+                            el.css("background", r if r)
+
                             controller.$viewValue.value = val
                           items:11
                           });
         controller.$viewValue.value = val
 
       controller.$render = ()->
-        el.val(controller.$viewValue.value || '');
+        if !controller.$viewValue
+          el.val("loading...")
+          return
 
         a = controller.$viewValue
+        el.val(a.value);
+
         switch a.type
           when "color","basiccolor"
             el.width "80px"
@@ -94,6 +103,7 @@ module.directive "bootstrapelem", (datajson,$filter) ->
               colorsonly =  $filter("typevalue")(scope.data, "color","basiccolor" )
               r = colorsonly[a.value.substr(1)]
               el.css "background", r if r
+
   directiveDefinitionObject
 
 appCtrl = ($scope, $http) ->

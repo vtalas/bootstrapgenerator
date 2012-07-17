@@ -27,16 +27,19 @@ namespace bootstrapgenerator.Controllers
 
 		public ActionResult Index()
         {
-			return View(Bg.GetUserVariablesJson());
+			//return View(Bg.GetUserVariablesJson());
+			return View();
         }
 		public ActionResult Jsondata()
         {
+			System.Threading.Thread.Sleep(5000);
 			return new JSONNetResult(Bg.GetUserVariablesJson());
 		}
 
 		public ActionResult PreviewMode()
         {
-			return View(Bg.GetUserVariablesJson());
+			return View();
+			//return View(Bg.GetUserVariablesJson());
         }
 
 		public ActionResult Preview()

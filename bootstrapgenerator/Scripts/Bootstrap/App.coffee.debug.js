@@ -45,22 +45,13 @@
         return x;
       };
     });
-    $provide.factory("datajson", function($http) {
-      var d, x;
-      d = $.parseJSON(angular.element("html").data("modeldata"));
+    $provide.factory("datajsonPromise", function($http) {
+      var x;
       x = $http({
         method: "POST",
         url: "/bootstrap/JSONDATA"
-      }).success(function(data, status, headers, config) {
-        return console.log(data, "data sjons  ");
       });
-      console.log(x, "x");
-      return d;
-    });
-    $provide.factory("colorsonly", function($filter, datajson) {
-      var a;
-      a = $filter("typevalue")(datajson, "color");
-      return a;
+      return x;
     });
     return $routeProvider.when("/csstest", {
       controller: appCtrl,
@@ -75,26 +66,29 @@
       redirectTo: '/csstest'
     });
   });
-  module.directive("colorpicker", function(datajson, $filter) {
+  module.directive("colorpicker", function($filter) {
     return 1;
   });
-  module.directive("bootstrapelem", function(datajson, $filter) {
+  module.directive("bootstrapelem", function($filter, datajsonPromise) {
     var directiveDefinitionObject;
     directiveDefinitionObject = {
       require: '?ngModel',
       link: function(scope, el, tAttrs, controller) {
+        var jsondata;
+        jsondata = {};
+        datajsonPromise.then(function(rs) {
+          return jsondata = rs.data;
+        });
         controller.$setViewValue = function(val) {
           var basiccolors;
-          basiccolors = $filter("nameType")(scope.data, "basiccolor");
-          $(el).typeahead({
+          basiccolors = $filter("nameType")(jsondata, "basiccolor");
+          el.typeahead({
             source: basiccolors,
             updater: function(val) {
               var colorsonly, r;
-              colorsonly = $filter("typevalue")(scope.data, "color", "basiccolor");
+              colorsonly = $filter("typevalue")(jsondata, "color", "basiccolor");
               r = colorsonly[val.substr(1)];
-              if (r) {
-                el.css("background", r);
-              }
+              el.css("background", r ? r : void 0);
               return controller.$viewValue.value = val;
             },
             items: 11
@@ -103,8 +97,12 @@
         };
         return controller.$render = function() {
           var a, colorsonly, r;
-          el.val(controller.$viewValue.value || '');
+          if (!controller.$viewValue) {
+            el.val("loading...");
+            return;
+          }
           a = controller.$viewValue;
+          el.val(a.value);
           switch (a.type) {
             case "color":
             case "basiccolor":
