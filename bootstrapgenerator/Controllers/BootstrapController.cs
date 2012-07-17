@@ -32,7 +32,7 @@ namespace bootstrapgenerator.Controllers
         }
 		public ActionResult Jsondata()
         {
-			System.Threading.Thread.Sleep(5000);
+			//System.Threading.Thread.Sleep(5000);
 			return new JSONNetResult(Bg.GetUserVariablesJson());
 		}
 

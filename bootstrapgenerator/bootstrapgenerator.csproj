@@ -131,6 +131,9 @@
     <Content Include="Content\bootstrap_templates\bootswatch.html" />
     <Content Include="Content\bootstrap_templates\components.html" />
     <Content Include="Content\bootstrap_templates\csstest.html" />
+    <Content Include="Content\minicolors\images\colors.png" />
+    <Content Include="Content\minicolors\images\trigger.png" />
+    <Content Include="Content\minicolors\jquery.miniColors.css" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\angular-resource.js" />
     <Content Include="Scripts\angular.js" />
