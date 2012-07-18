@@ -66,9 +66,6 @@
       redirectTo: '/csstest'
     });
   });
-  module.directive("colorpicker", function($filter) {
-    return 1;
-  });
   module.directive("bootstrapelem", function($filter, datajsonPromise) {
     var directiveDefinitionObject;
     directiveDefinitionObject = {
@@ -79,6 +76,7 @@
         datajsonPromise.then(function(rs) {
           return jsondata = rs.data;
         });
+        console.log("xx");
         controller.$setViewValue = function(val) {
           var basiccolors;
           basiccolors = $filter("nameType")(jsondata, "basiccolor");
@@ -111,7 +109,8 @@
                 el.css("background", a.value);
               }
               if (a.value[0] === "@") {
-                colorsonly = $filter("typevalue")(scope.data, "color", "basiccolor");
+                console.log("aaa");
+                colorsonly = $filter("typevalue")(jsondata, "color", "basiccolor");
                 r = colorsonly[a.value.substr(1)];
                 if (r) {
                   return el.css("background", r);

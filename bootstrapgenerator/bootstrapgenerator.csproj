@@ -142,12 +142,16 @@
     <Content Include="Scripts\Bootstrap\App.coffee.debug.js" />
     <Content Include="Scripts\Bootstrap\Bootstrap.coffee" />
     <Content Include="Scripts\Bootstrap\Bootstrap.coffee.debug.js" />
+    <Content Include="Scripts\Demo\ex1.coffee" />
+    <Content Include="Scripts\Demo\ex1.coffee.debug.js" />
+    <Content Include="Scripts\Demo\ex2.coffee" />
     <Content Include="Scripts\jquery-1.6.4-vsdoc.js" />
     <Content Include="Scripts\jquery-1.6.4.js" />
     <Content Include="Scripts\jquery-1.6.4.min.js" />
     <Content Include="Scripts\jquery-1.7.2.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.js" />
     <Content Include="Scripts\jquery-ui-1.8.11.min.js" />
+    <Content Include="Scripts\jquery.miniColors.js" />
     <Content Include="Scripts\jquery.signalR-0.5.2.js" />
     <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -246,6 +250,10 @@
     <Content Include="Views\Demo\Index.cshtml" />
     <Content Include="Views\Demo\_DemoLayout.cshtml" />
     <Content Include="Views\Demo\ex1.cshtml" />
+    <Content Include="Views\Demo\ex11.cshtml">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="Views\Demo\ex2.cshtml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />

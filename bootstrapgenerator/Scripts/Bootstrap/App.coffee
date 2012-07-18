@@ -60,9 +60,6 @@ module.config ($routeProvider,$provide,$filterProvider) ->
 
 
 
-module.directive "colorpicker", ($filter) ->
-  1
-
 
 module.directive "bootstrapelem", ($filter, datajsonPromise) ->
   directiveDefinitionObject =
@@ -70,6 +67,7 @@ module.directive "bootstrapelem", ($filter, datajsonPromise) ->
     link: (scope, el, tAttrs, controller) ->
       jsondata = {}
       datajsonPromise.then((rs)->jsondata = rs.data)
+      console.log("xx")
 
       controller.$setViewValue = (val)->
         basiccolors=$filter("nameType")(jsondata, "basiccolor" )
@@ -100,7 +98,8 @@ module.directive "bootstrapelem", ($filter, datajsonPromise) ->
               el.css "background", a.value
 
             if a.value[0] == "@"
-              colorsonly =  $filter("typevalue")(scope.data, "color","basiccolor" )
+              console.log("aaa")
+              colorsonly =  $filter("typevalue")(jsondata, "color","basiccolor" )
               r = colorsonly[a.value.substr(1)]
               el.css "background", r if r
 
